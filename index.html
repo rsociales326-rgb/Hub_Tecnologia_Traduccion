@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub de Tecnología Aplicada a la Traducción</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+            background: #e2e8f0;
+            padding: 4px;
+            border-radius: 20px;
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 14px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            max-width: 850px;
+            margin: 40px auto 40px;
+        }
+
+        .author {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            margin-bottom: 8px;
+        }
+
+        .card h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .features-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+        }
+
+        .features-list li::before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            margin-top: auto;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLanguage('es')">ES</button>
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+    </div>
+
+    <header>
+        <span class="author">Profa. Verónica Hermida</span>
+        <h1 id="header-title">Hub de Tecnología Aplicada a la Traducción</h1>
+        <p id="header-desc">Guía interactiva de herramientas esenciales, gratuitas y profesionales para el aprendizaje activo y la práctica de la traducción.</p>
+    </header>
+
+    <main class="grid">
+        
+        <!-- OmegaT -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>OmegaT</h2>
+                </div>
+                <span class="tag">CAT</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-omegat">Sí, permanente</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Win / Mac / Linux</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-omegat">Para comprender CAT, TM, glosarios, proyectos y formatos sin costo</span></li>
+                </ul>
+            </div>
+            <a href="https://omegat.org/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar OmegaT</a>
+        </article>
+
+        <!-- Matecat -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Matecat</h2>
+                </div>
+                <span class="tag">CAT online</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-matecat">Sí</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-matecat">Excelente para introducir CAT sin instalación</span></li>
+                </ul>
+            </div>
+            <a href="https://www.matecat.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Matecat</a>
+        </article>
+
+        <!-- CafeTran Espresso -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>CafeTran Espresso</h2>
+                </div>
+                <span class="tag">CAT</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-cafetran">Sí, con limitaciones</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-cafetran">Uso gratuito indefinido</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Win / Mac / Linux</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-cafetran">Alternativa CAT independiente</span></li>
+                </ul>
+            </div>
+            <a href="https://www.cafetran.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar CafeTran</a>
+        </article>
+
+        <!-- Trados Studio -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Trados Studio</h2>
+                </div>
+                <span class="tag">CAT profesional</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-trados">No</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-trados">14 días para Freelance por suscripción; 30 días para Professional</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Windows</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-trados">Estándar de mercado y muy importante para empleabilidad</span></li>
+                </ul>
+            </div>
+            <a href="https://www.trados.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Trados</a>
+        </article>
+
+        <!-- memoQ translator pro -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>memoQ translator pro</h2>
+                </div>
+                <span class="tag">CAT profesional</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-memoq">No</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-memoq">14 días</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Windows</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-memoq">Comparación directa con Trados</span></li>
+                </ul>
+            </div>
+            <a href="https://www.memoq.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar memoQ</a>
+        </article>
+
+        <!-- Smartcat -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Smartcat</h2>
+                </div>
+                <span class="tag">CAT / TMS / IA</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-smartcat">No permanente</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-smartcat">15 días</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-smartcat">CAT + colaboración + gestión de proyectos + IA</span></li>
+                </ul>
+            </div>
+            <a href="https://www.smartcat.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Smartcat</a>
+        </article>
+
+        <!-- Phrase -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Phrase</h2>
+                </div>
+                <span class="tag" id="tag-phrase">CAT / TMS / Localización</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-phrase">No</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-phrase">Depende del producto/plan</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-phrase">Para introducir TMS y localización profesional</span></li>
+                </ul>
+            </div>
+            <a href="https://phrase.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Phrase</a>
+        </article>
+
+        <!-- Wordfast Anywhere -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Wordfast Anywhere</h2>
+                </div>
+                <span class="tag">CAT online</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-wf">No permanente</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-wf">30 días por US$1</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-wf">Interesante para comparar modelos SaaS</span></li>
+                </ul>
+            </div>
+            <a href="https://www.wordfast.com/products_wordfast_anywhere" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Wordfast</a>
+        </article>
+
+        <!-- Wordscope -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Wordscope</h2>
+                </div>
+                <span class="tag">CAT / IA</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-wordscope">Sí, plan gratuito disponible</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-wordscope">Prueba gratuita de planes Premium</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-wordscope">Entorno de traducción asistida e investigación con integración de IA</span></li>
+                </ul>
+            </div>
+            <a href="https://pro.wordscope.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Wordscope</a>
+        </article>
+
+        <!-- XTM Cloud -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>XTM Cloud</h2>
+                </div>
+                <span class="tag" id="tag-xtm">TMS / Localización</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-xtm">No</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-xtm">30 días</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-xtm">Para mostrar el mundo de la localización empresarial</span></li>
+                </ul>
+            </div>
+            <a href="https://xtm.cloud/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar XTM Cloud</a>
+        </article>
+
+        <!-- Okapi Framework -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Okapi Framework</h2>
+                </div>
+                <span class="tag" id="tag-okapi">Localización / CAT</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-okapi">Sí, open source</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> <span id="plat-okapi">Multiplataforma</span></li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-okapi">Interoperabilidad, XLIFF, TMX, SRX y procesos de localización</span></li>
+                </ul>
+            </div>
+            <a href="https://okapiframework.org/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Okapi</a>
+        </article>
+
+        <!-- ABBYY FineReader PDF -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>ABBYY FineReader PDF</h2>
+                </div>
+                <span class="tag">OCR / PDF</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-abbyy">No</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-abbyy">7 días, hasta 100 páginas convertidas</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Windows / Mac</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-abbyy">Fundamental para traducción de documentos escaneados</span></li>
+                </ul>
+            </div>
+            <a href="https://pdf.abbyy.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar ABBYY</a>
+        </article>
+
+        <!-- NAPS2 -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>NAPS2</h2>
+                </div>
+                <span class="tag" id="tag-naps2">Escaneo / PDF</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-naps2">Sí, open source</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Win / Mac / Linux</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-naps2">Escaneo rápido, digitalización y organización de documentos en PDF para traducción</span></li>
+                </ul>
+            </div>
+            <a href="https://www.naps2.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar NAPS2</a>
+        </article>
+
+        <!-- Aegisub -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Aegisub</h2>
+                </div>
+                <span class="tag" id="tag-aegisub">Subtitulación</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-aegisub">Sí, open source</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> <span id="plat-aegisub">Multiplataforma</span></li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-aegisub">Introducción a subtitulación</span></li>
+                </ul>
+            </div>
+            <a href="https://aegisub.org/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Aegisub</a>
+        </article>
+
+        <!-- Subtitle Edit -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Subtitle Edit</h2>
+                </div>
+                <span class="tag" id="tag-se">Subtitulación</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-se">Sí, open source</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Win / Mac / Linux</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-se">Muy completo y gratuito; admite 380+ formatos</span></li>
+                </ul>
+            </div>
+            <a href="https://www.nikse.dk/subtitleedit" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Subtitle Edit</a>
+        </article>
+
+        <!-- LanguageTool -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>LanguageTool</h2>
+                </div>
+                <span class="tag" id="tag-lt">Revisión lingüística</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-lt">Sí, versión básica</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-lt">Premium con garantía de devolución de 14 días</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web / Desktop</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-lt">QA lingüístico y revisión de textos</span></li>
+                </ul>
+            </div>
+            <a href="https://languagetool.org/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar LanguageTool</a>
+        </article>
+
+        <!-- AutoHotkey -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>AutoHotkey</h2>
+                </div>
+                <span class="tag" id="tag-ahk">Automatización</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-ahk">Sí, open source</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Windows</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-ahk">Automatizar tareas repetitivas del traductor</span></li>
+                </ul>
+            </div>
+            <a href="https://www.autohotkey.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar AutoHotkey</a>
+        </article>
+
+        <!-- DeepL -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>DeepL</h2>
+                </div>
+                <span class="tag">MT / IA</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-deepl">Sí, versión gratuita</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web / Desktop / API</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-deepl">MT, comparación, posedición y evaluación crítica</span></li>
+                </ul>
+            </div>
+            <a href="https://www.deepl.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar DeepL</a>
+        </article>
+
+        <!-- Google Translate -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Google Translate</h2>
+                </div>
+                <span class="tag">MT</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-gt">Sí</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web / API</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-gt">Comparación de motores y evaluación de MT</span></li>
+                </ul>
+            </div>
+            <a href="https://translate.google.com/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Google Translate</a>
+        </article>
+
+        <!-- AntConc -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>AntConc</h2>
+                </div>
+                <span class="tag" id="tag-antconc">Corpus</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-antconc">Sí</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Win / Mac / Linux</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-antconc">Investigación terminológica y lingüística basada en corpus</span></li>
+                </ul>
+            </div>
+            <a href="https://www.laurenceanthony.net/software/antconc/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar AntConc</a>
+        </article>
+
+        <!-- Sketch Engine -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Sketch Engine</h2>
+                </div>
+                <span class="tag" id="tag-sketch">Corpus / Terminología</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-sketch">No</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> <span id="trial-sketch">Prueba gratuita disponible</span></li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Web</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-sketch">Corpus profesionales y terminología</span></li>
+                </ul>
+            </div>
+            <a href="https://www.sketchengine.eu/" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar Sketch Engine</a>
+        </article>
+
+        <!-- Microsoft Word / Excel -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2>Microsoft Word/Excel</h2>
+                </div>
+                <span class="tag" id="tag-ms">Productividad</span>
+                <ul class="features-list">
+                    <li><strong class="lbl-free">¿Gratis?:</strong> <span id="free-ms">Licencia institucional</span></li>
+                    <li><strong class="lbl-trial">Prueba:</strong> —</li>
+                    <li><strong class="lbl-platform">Plataforma:</strong> Desktop / Web</li>
+                    <li><strong class="lbl-didactic">Utilidad:</strong> <span id="did-ms">Herramientas que realmente forman parte del trabajo cotidiano</span></li>
+                </ul>
+            </div>
+            <a href="https://www.microsoft.com/microsoft-365" target="_blank" rel="noopener noreferrer" class="btn lang-btn-text">Explorar MS Office</a>
+        </article>
+
+    </main>
+
+    <footer>
+        <p id="footer-text">Recurso didáctico diseñado para la enseñanza de tecnología aplicada a la traducción.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            es: {
+                "header-title": "Hub de Tecnología Aplicada a la Traducción",
+                "header-desc": "Guía interactiva de herramientas esenciales, gratuitas y profesionales para el aprendizaje activo y la práctica de la traducción.",
+                "footer-text": "Recurso didáctico diseñado para la enseñanza de tecnología aplicada a la traducción.",
+                
+                // Labels
+                "lbl-free": "¿Gratis?:",
+                "lbl-trial": "Prueba:",
+                "lbl-platform": "Plataforma:",
+                "lbl-didactic": "Utilidad:",
+
+                // Tags / Categories
+                "tag-phrase": "CAT / TMS / Localización",
+                "tag-xtm": "TMS / Localización",
+                "tag-okapi": "Localización / CAT",
+                "tag-naps2": "Escaneo / PDF",
+                "tag-aegisub": "Subtitulación",
+                "tag-se": "Subtitulación",
+                "tag-lt": "Revisión lingüística",
+                "tag-ahk": "Automatización",
+                "tag-antconc": "Corpus",
+                "tag-sketch": "Corpus / Terminología",
+                "tag-ms": "Productividad",
+
+                // Details
+                "free-omegat": "Sí, permanente",
+                "did-omegat": "Para comprender CAT, TM, glosarios, proyectos y formatos sin costo",
+                "btn-omegat": "Explorar OmegaT",
+
+                "free-matecat": "Sí",
+                "did-matecat": "Excelente para introducir CAT sin instalación",
+                "btn-matecat": "Explorar Matecat",
+
+                "free-cafetran": "Sí, con limitaciones",
+                "trial-cafetran": "Uso gratuito indefinido",
+                "did-cafetran": "Alternativa CAT independiente",
+                "btn-cafetran": "Explorar CafeTran",
+
+                "free-trados": "No",
+                "trial-trados": "14 días para Freelance por suscripción; 30 días para Professional",
+                "did-trados": "Estándar de mercado y muy importante para empleabilidad",
+                "btn-trados": "Explorar Trados",
+
+                "free-memoq": "No",
+                "trial-memoq": "14 días",
+                "did-memoq": "Comparación directa con Trados",
+                "btn-memoq": "Explorar memoQ",
+
+                "free-smartcat": "No permanente",
+                "trial-smartcat": "15 días",
+                "did-smartcat": "CAT + colaboración + gestión de proyectos + IA",
+                "btn-smartcat": "Explorar Smartcat",
+
+                "free-phrase": "No",
+                "trial-phrase": "Depende del producto/plan",
+                "did-phrase": "Para introducir TMS y localización profesional",
+                "btn-phrase": "Explorar Phrase",
+
+                "free-wf": "No permanente",
+                "trial-wf": "30 días por US$1",
+                "did-wf": "Interesante para comparar modelos SaaS",
+                "btn-wf": "Explorar Wordfast",
+
+                "free-wordscope": "Sí, plan gratuito disponible",
+                "trial-wordscope": "Prueba gratuita de planes Premium",
+                "did-wordscope": "Entorno de traducción asistida e investigación con integración de IA",
+                "btn-wordscope": "Explorar Wordscope",
+
+                "free-xtm": "No",
+                "trial-xtm": "30 días",
+                "did-xtm": "Para mostrar el mundo de la localización empresarial",
+                "btn-xtm": "Explorar XTM Cloud",
+
+                "free-okapi": "Sí, open source",
+                "plat-okapi": "Multiplataforma",
+                "did-okapi": "Interoperabilidad, XLIFF, TMX, SRX y procesos de localización",
+                "btn-okapi": "Explorar Okapi",
+
+                "free-abbyy": "No",
+                "trial-abbyy": "7 días, hasta 100 páginas convertidas",
+                "did-abbyy": "Fundamental para traducción de documentos escaneados",
+                "btn-abbyy": "Explorar ABBYY",
+
+                "free-naps2": "Sí, open source",
+                "did-naps2": "Escaneo rápido, digitalización y organización de documentos en PDF para traducción",
+                "btn-naps2": "Explorar NAPS2",
+
+                "free-aegisub": "Sí, open source",
+                "plat-aegisub": "Multiplataforma",
+                "did-aegisub": "Introducción a subtitulación",
+                "btn-aegisub": "Explorar Aegisub",
+
+                "free-se": "Sí, open source",
+                "did-se": "Muy completo y gratuito; admite 380+ formatos",
+                "btn-se": "Explorar Subtitle Edit",
+
+                "free-lt": "Sí, versión básica",
+                "trial-lt": "Premium con garantía de devolución de 14 días",
+                "did-lt": "QA lingüístico y revisión de textos",
+                "btn-lt": "Explorar LanguageTool",
+
+                "free-ahk": "Sí, open source",
+                "did-ahk": "Automatizar tareas repetitivas del traductor",
+                "btn-ahk": "Explorar AutoHotkey",
+
+                "free-deepl": "Sí, versión gratuita",
+                "did-deepl": "MT, comparación, posedición y evaluación crítica",
+                "btn-deepl": "Explorar DeepL",
+
+                "free-gt": "Sí",
+                "did-gt": "Comparación de motores y evaluación de MT",
+                "btn-gt": "Explorar Google Translate",
+
+                "free-antconc": "Sí",
+                "did-antconc": "Investigación terminológica y lingüística basada en corpus",
+                "btn-antconc": "Explorar AntConc",
+
+                "free-sketch": "No",
+                "trial-sketch": "Prueba gratuita disponible",
+                "did-sketch": "Corpus profesionales y terminología",
+                "btn-sketch": "Explorar Sketch Engine",
+
+                "free-ms": "Licencia institucional",
+                "did-ms": "Herramientas que realmente forman parte del trabajo cotidiano",
+                "btn-ms": "Explorar MS Office"
+            },
+            en: {
+                "header-title": "Translation Technology Hub",
+                "header-desc": "An interactive guide to essential, free, and professional tools for active learning and translation practice.",
+                "footer-text": "Educational resource designed for teaching translation technology.",
+                
+                // Labels
+                "lbl-free": "Free?:",
+                "lbl-trial": "Trial:",
+                "lbl-platform": "Platform:",
+                "lbl-didactic": "Use Case:",
+
+                // Tags / Categories
+                "tag-phrase": "CAT / TMS / Localization",
+                "tag-xtm": "TMS / Localization",
+                "tag-okapi": "Localization / CAT",
+                "tag-naps2": "Scanning / PDF",
+                "tag-aegisub": "Subtitling",
+                "tag-se": "Subtitling",
+                "tag-lt": "Linguistic Review",
+                "tag-ahk": "Automation",
+                "tag-antconc": "Corpus",
+                "tag-sketch": "Corpus / Terminology",
+                "tag-ms": "Productivity",
+
+                // Details
+                "free-omegat": "Yes, permanent",
+                "did-omegat": "To understand CAT, TM, glossaries, projects, and formats at no cost",
+                "btn-omegat": "Explore OmegaT",
+
+                "free-matecat": "Yes",
+                "did-matecat": "Excellent to introduce CAT without installation",
+                "btn-matecat": "Explore Matecat",
+
+                "free-cafetran": "Yes, with limits",
+                "trial-cafetran": "Indefinite free usage",
+                "did-cafetran": "Independent CAT alternative",
+                "btn-cafetran": "Explore CafeTran",
+
+                "free-trados": "No",
+                "trial-trados": "14 days for Freelance subscription; 30 days for Professional",
+                "did-trados": "Market standard and very important for employability",
+                "btn-trados": "Explore Trados",
+
+                "free-memoq": "No",
+                "trial-memoq": "14 days",
+                "did-memoq": "Direct comparison with Trados",
+                "btn-memoq": "Explore memoQ",
+
+                "free-smartcat": "Not permanent",
+                "trial-smartcat": "15 days",
+                "did-smartcat": "CAT + collaboration + project management + AI",
+                "btn-smartcat": "Explore Smartcat",
+
+                "free-phrase": "No",
+                "trial-phrase": "Depends on product/plan",
+                "did-phrase": "To introduce TMS and professional localization",
+                "btn-phrase": "Explore Phrase",
+
+                "free-wf": "Not permanent",
+                "trial-wf": "30 days for US$1",
+                "did-wf": "Interesting for comparing SaaS models",
+                "btn-wf": "Explore Wordfast",
+
+                "free-wordscope": "Yes, free plan available",
+                "trial-wordscope": "Free trial for Premium plans",
+                "did-wordscope": "Computer-assisted translation and research environment with AI integration",
+                "btn-wordscope": "Explore Wordscope",
+
+                "free-xtm": "No",
+                "trial-xtm": "30 days",
+                "did-xtm": "To show the world of enterprise localization",
+                "btn-xtm": "Explore XTM Cloud",
+
+                "free-okapi": "Yes, open source",
+                "plat-okapi": "Cross-platform",
+                "did-okapi": "Interoperability, XLIFF, TMX, SRX, and localization workflows",
+                "btn-okapi": "Explore Okapi",
+
+                "free-abbyy": "No",
+                "trial-abbyy": "7 days, up to 100 converted pages",
+                "did-abbyy": "Essential for scanned document translation",
+                "btn-abbyy": "Explore ABBYY",
+
+                "free-naps2": "Yes, open source",
+                "did-naps2": "Fast scanning, digitization, and PDF document organization for translation",
+                "btn-naps2": "Explore NAPS2",
+
+                "free-aegisub": "Yes, open source",
+                "plat-aegisub": "Cross-platform",
+                "did-aegisub": "Introduction to subtitling",
+                "btn-aegisub": "Explore Aegisub",
+
+                "free-se": "Yes, open source",
+                "did-se": "Comprehensive and free; supports 380+ formats",
+                "btn-se": "Explore Subtitle Edit",
+
+                "free-lt": "Yes, basic version",
+                "trial-lt": "Premium with 14-day money-back guarantee",
+                "did-lt": "Linguistic QA and text review",
+                "btn-lt": "Explore LanguageTool",
+
+                "free-ahk": "Yes, open source",
+                "did-ahk": "Automate repetitive translator tasks",
+                "btn-ahk": "Explore AutoHotkey",
+
+                "free-deepl": "Yes, free version",
+                "did-deepl": "MT, comparison, post-editing, and critical evaluation",
+                "btn-deepl": "Explore DeepL",
+
+                "free-gt": "Yes",
+                "did-gt": "Engine comparison and MT evaluation",
+                "btn-gt": "Explore Google Translate",
+
+                "free-antconc": "Yes",
+                "did-antconc": "Corpus-based linguistic and terminology research",
+                "btn-antconc": "Explore AntConc",
+
+                "free-sketch": "No",
+                "trial-sketch": "Free trial available",
+                "did-sketch": "Professional corpora and terminology",
+                "btn-sketch": "Explore Sketch Engine",
+
+                "free-ms": "Institutional license",
+                "did-ms": "Tools that are actually part of daily work",
+                "btn-ms": "Explore MS Office"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if (lang === 'es') {
+                document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            } else {
+                document.querySelectorAll('.lang-btn')[1].classList.add('active');
+            }
+
+            // Update main elements
+            Object.keys(translations[lang]).forEach(id => {
+                if (id.startsWith('lbl-')) {
+                    document.querySelectorAll('.' + id).forEach(el => el.textContent = translations[lang][id]);
+                } else {
+                    const el = document.getElementById(id);
+                    if (el) el.innerHTML = translations[lang][id];
+                }
+            });
+
+            // Update buttons
+            const btnKeys = [
+                "btn-omegat", "btn-matecat", "btn-cafetran", "btn-trados", "btn-memoq",
+                "btn-smartcat", "btn-phrase", "btn-wf", "btn-wordscope", "btn-xtm", "btn-okapi",
+                "btn-abbyy", "btn-naps2", "btn-aegisub", "btn-se", "btn-lt", "btn-ahk",
+                "btn-deepl", "btn-gt", "btn-antconc", "btn-sketch", "btn-ms"
+            ];
+
+            const btns = document.querySelectorAll('.lang-btn-text');
+            btnKeys.forEach((key, index) => {
+                if (btns[index]) {
+                    btns[index].textContent = translations[lang][key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>
